@@ -1,0 +1,63 @@
+/* Custom Scrollbar for PDF container */
+#pdf-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+#pdf-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#pdf-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+}
+
+#pdf-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Markdown Content Styles */
+.prose {
+    max-width: 100%;
+}
+
+.prose pre {
+    background-color: #2d2d2d;
+    color: #ccc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+.prose code {
+    color: #e53e3e;
+    font-weight: 600;
+}
+
+.prose pre code {
+    color: inherit;
+    font-weight: normal;
+}
+
+.prose h1, .prose h2, .prose h3 {
+    color: #1e3a8a;
+}
+
+.prose img {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Tab Active States */
+.tab-active {
+    border-bottom-color: #1e3a8a !important;
+    color: #1e3a8a !important;
+    background-color: #ffffff !important;
+}
+
+.tab-inactive {
+    border-bottom-color: transparent !important;
+    color: #6b7280 !important;
+    background-color: transparent !important;
+}

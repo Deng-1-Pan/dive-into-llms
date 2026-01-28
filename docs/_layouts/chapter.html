@@ -1,0 +1,120 @@
+---
+layout: default
+---
+
+<div class="max-w-6xl mx-auto" data-chapter-id="{{ page.chapter_id }}">
+    <!-- Navigation & Title -->
+    <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+            <div class="flex items-center text-sm text-gray-500 mb-1">
+                <a href="{{ '/' | relative_url }}" class="hover:text-primary"><i class="fas fa-arrow-left mr-1"></i> Back to Course</a>
+                <span class="mx-2">/</span>
+                <span>Chapter {{ page.chapter_number }}</span>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900">{{ page.title }}</h1>
+        </div>
+        
+        <div class="flex items-center space-x-3">
+            {% if page.prev_chapter %}
+            <a href="{{ '/chapter-' | append: page.prev_chapter | relative_url }}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+                <i class="fas fa-chevron-left mr-1"></i> Prev
+            </a>
+            {% endif %}
+            
+            {% if page.next_chapter %}
+            <a href="{{ '/chapter-' | append: page.next_chapter | relative_url }}" class="px-4 py-2 bg-primary text-white border border-primary rounded-lg text-sm font-medium hover:bg-blue-800 transition shadow-sm">
+                Next <i class="fas fa-chevron-right ml-1"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Content Tabs -->
+    <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden min-h-[800px] flex flex-col">
+        <!-- Tab Headers -->
+        <div class="flex border-b border-gray-200 bg-gray-50">
+            <button id="tab-pdf" class="flex-1 py-4 px-6 text-center font-medium text-sm focus:outline-none border-b-2 border-primary text-primary bg-white transition-colors flex items-center justify-center gap-2" onclick="switchTab('pdf')">
+                <i class="fas fa-file-pdf text-red-500"></i> Slides (PDF)
+            </button>
+            <button id="tab-readme" class="flex-1 py-4 px-6 text-center font-medium text-sm focus:outline-none border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors flex items-center justify-center gap-2" onclick="switchTab('readme')">
+                <i class="fab fa-markdown text-blue-500"></i> Tutorial (README)
+            </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="flex-grow relative bg-gray-100">
+            <!-- PDF Viewer Container -->
+            <div id="content-pdf" class="absolute inset-0 flex flex-col h-full w-full">
+                <!-- PDF Toolbar -->
+                <div class="bg-dark text-white p-2 flex items-center justify-between shadow-md z-10">
+                    <div class="flex items-center space-x-4">
+                        <button id="pdf-prev" class="p-1.5 hover:bg-gray-700 rounded transition" title="Previous Page">
+                            <i class="fas fa-chevron-up"></i>
+                        </button>
+                        <span class="text-sm font-mono">
+                            <span id="page-num">--</span> / <span id="page-count">--</span>
+                        </span>
+                        <button id="pdf-next" class="p-1.5 hover:bg-gray-700 rounded transition" title="Next Page">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button id="pdf-zoom-out" class="p-1.5 hover:bg-gray-700 rounded transition" title="Zoom Out">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span id="zoom-level" class="text-xs w-12 text-center">100%</span>
+                        <button id="pdf-zoom-in" class="p-1.5 hover:bg-gray-700 rounded transition" title="Zoom In">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div>
+                         <a href="https://raw.githubusercontent.com/{{ site.repository }}/main/{{ page.directory }}/{{ page.pdf_file }}" target="_blank" class="p-1.5 hover:bg-gray-700 rounded transition text-sm flex items-center gap-1" title="Download">
+                            <i class="fas fa-download"></i> <span class="hidden sm:inline">Download</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- PDF Canvas -->
+                <div class="flex-grow overflow-auto flex justify-center bg-gray-200 p-4 relative" id="pdf-container">
+                    <canvas id="the-canvas" class="shadow-2xl"></canvas>
+                    <div id="pdf-loader" class="absolute inset-0 flex items-center justify-center bg-gray-200 z-20">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Markdown Container -->
+            <div id="content-readme" class="hidden absolute inset-0 overflow-auto bg-white p-8">
+                <div class="max-w-4xl mx-auto prose prose-blue prose-lg" id="markdown-content">
+                    <div class="flex items-center justify-center h-64">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mark as Complete Section -->
+    <div class="mt-8 bg-blue-50 border border-blue-100 rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+            <h3 class="text-lg font-semibold text-blue-900">Finished this chapter?</h3>
+            <p class="text-blue-700 text-sm">Mark it as complete to track your progress.</p>
+        </div>
+        <button id="mark-complete-btn" class="px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg shadow-sm hover:bg-blue-700 transition flex items-center gap-2">
+            <i class="far fa-circle"></i> Mark as Complete
+        </button>
+    </div>
+</div>
+
+<script>
+    // Data passed from Jekyll to JS
+    const chapterData = {
+        id: "{{ page.chapter_id }}",
+        pdfUrl: "https://raw.githubusercontent.com/{{ site.repository }}/main/{{ page.directory }}/{{ page.pdf_file }}",
+        readmeUrl: "https://raw.githubusercontent.com/{{ site.repository }}/main/{{ page.directory }}/{{ page.readme_file }}"
+    };
+</script>
+
+<!-- Page Specific Scripts -->
+<script src="{{ '/assets/js/pdf-loader.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/markdown-loader.js' | relative_url }}"></script>

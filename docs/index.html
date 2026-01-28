@@ -1,0 +1,64 @@
+---
+layout: default
+title: Home
+---
+
+<div class="space-y-8">
+    <!-- Hero Section -->
+    <div class="text-center space-y-4 py-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Start Your LLM Journey</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            A comprehensive, open-source curriculum for understanding and mastering Large Language Models.
+        </p>
+        
+        <!-- Progress Overview -->
+        <div id="overall-progress-container" class="max-w-md mx-auto mt-8 hidden">
+            <div class="flex justify-between text-sm text-gray-600 mb-2">
+                <span>Learning Progress</span>
+                <span id="progress-text">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div id="progress-bar" class="bg-green-600 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapter Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for chapter in site.data.chapters %}
+        <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-gray-100 flex flex-col h-full group">
+            <div class="p-6 flex-grow flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                        Chapter {{ chapter.number }}
+                    </span>
+                    <i class="fas fa-check-circle text-gray-300 chapter-status-icon" data-chapter-id="{{ chapter.id }}"></i>
+                </div>
+                
+                <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                    <a href="{{ '/chapter-' | append: chapter.number | relative_url }}" class="hover:underline">
+                        {{ chapter.title }}
+                    </a>
+                </h2>
+                
+                <p class="text-gray-600 text-sm mb-4 flex-grow">
+                    {{ chapter.description }}
+                </p>
+                
+                <div class="flex items-center text-xs text-gray-500 space-x-4 mt-auto pt-4 border-t border-gray-50">
+                    <span class="flex items-center">
+                        <i class="fas fa-file-pdf mr-1.5 text-red-500"></i> PDF
+                    </span>
+                    <span class="flex items-center">
+                        <i class="fab fa-markdown mr-1.5 text-blue-500"></i> README
+                    </span>
+                </div>
+            </div>
+            
+            <a href="{{ '/chapter-' | append: chapter.number | relative_url }}" class="bg-gray-50 p-4 text-center text-primary font-medium text-sm hover:bg-blue-50 transition-colors border-t border-gray-100">
+                Start Learning <i class="fas fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

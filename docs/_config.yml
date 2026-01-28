@@ -1,0 +1,22 @@
+title: "Dive into LLMs"
+description: "A comprehensive guide to Large Language Models, from basics to advanced topics."
+baseurl: "/dive-into-llms" # Assuming project name, adjust if deployed to user.github.io
+url: "https://Deng-1-Pan.github.io" # Placeholder, will be overridden by GitHub Pages
+theme: null
+
+plugins:
+  - jekyll-seo-tag
+
+markdown: kramdown
+highlighter: rouge
+
+# Custom settings
+repository: Deng-1-Pan/dive-into-llms # Placeholder
+header_pages:
+  - index.html
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
