@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-dive_edit_0410.pdf
+chapter3/dive_edit_0410.pdf
 ```
 
 ## 教程内容

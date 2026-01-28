@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-RLHF.pdf
+chapter11/RLHF.pdf
 ```
 
 ## 教程内容

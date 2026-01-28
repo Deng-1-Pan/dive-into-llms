@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-dive-into-prompting.pdf
+chapter2/dive-into-prompting.pdf
 ```
 
 ## 教程内容

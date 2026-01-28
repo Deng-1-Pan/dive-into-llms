@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-watermark.pdf
+chapter5/watermark.pdf
 ```
 
 ## 教程内容

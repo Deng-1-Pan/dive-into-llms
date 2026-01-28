@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-math.pdf
+chapter4/math.pdf
 ```
 
 ## 教程内容

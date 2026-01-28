@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-mllms.pdf
+chapter8/mllms.pdf
 ```
 
 ## 教程内容

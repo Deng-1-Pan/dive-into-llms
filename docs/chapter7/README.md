@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-stega.pdf
+chapter7/stega.pdf
 ```
 
 ## 教程内容

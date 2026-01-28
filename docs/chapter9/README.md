@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-GUIagent.pdf
+chapter9/GUIagent.pdf
 ```
 
 ## 教程内容

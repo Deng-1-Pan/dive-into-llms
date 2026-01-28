@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-dive-Jailbreak.pdf
+chapter6/dive-Jailbreak.pdf
 ```
 
 ## 教程内容

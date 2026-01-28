@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-dive-into-llm.pdf
+chapter1/dive-into-llm.pdf
 ```
 
 ## 教程内容

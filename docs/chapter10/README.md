@@ -3,7 +3,7 @@
 ## 课件幻灯片
 
 ```pdf
-dive-into-safety.pdf
+chapter10/dive-into-safety.pdf
 ```
 
 ## 教程内容
