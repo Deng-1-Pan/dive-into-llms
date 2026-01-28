@@ -28,9 +28,14 @@ jobs:
           bundler-cache: true
           working-directory: './docs'
 
+      - name: Copy documents to docs
+        run: cp -r documents docs/
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
@@ -40,6 +45,8 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
 
   deploy:
     environment:
